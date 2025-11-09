@@ -1,0 +1,48 @@
+[
+    {
+        "title": "Admin Portal",
+        "description": "A fully managed backend solution.",
+        "image": "/media/directus-admin-portal.png",
+        "url": "",
+        "port": "8055"
+    },
+    {
+        "title": "Academy",
+        "description": "Take your exam and get certified with FundedYouth.",
+        "image": "/media/fundedyouth-academy.png",
+        "url": "https://fundedyouth.academy"
+    },
+    {
+        "title": "Read the latest",
+        "description": "Find out what's happening with FundedYouth, STEAM Education, and more.",
+        "image": "/media/fundedyouth-org.png",
+        "url": "https://fundedyouth.org"
+    },
+    {
+        "title": "Print Vault",
+        "description": "Get access to custom 3D files for printing. Exclusive designs. Membership required!",
+        "image": "/media/file-vault.png",
+        "url": "/filevault",
+        "port": "3000"
+    },
+    {
+        "title": "Volunteer Check In",
+        "description": "Track your hours and earned credits.",
+        "image": "/media/volunteer-time-tracker.png",
+        "url": "/timetracker",
+        "port": "3000"
+    },
+    {
+        "title": "Volunteer Hub",
+        "description": "Donate your time.",
+        "image": "/media/volunteer-hub.png",
+        "url": "http://fundedyouth.local/vhub/"
+    },
+    {
+        "title": "n8n Local Development",
+        "description": "Connect services, trigger events, webhooks, etc.",
+        "image": "/media/n8n-flow.png",
+        "url": "/home",
+        "port": "5678"
+    }
+]
