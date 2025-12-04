@@ -19,19 +19,19 @@ export function StyledVideoPlayer({
   const [isPlaying, setIsPlaying] = useState(false);
   const [playCount, setPlayCount] = useState(0);
 
+  // Handle video ended event for looping
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const handleEnded = () => {
-      const newCount = playCount + 1;
-      setPlayCount(newCount);
-
-      if (newCount < autoPlayCount) {
-        video.play();
-      } else {
-        setIsPlaying(false);
-      }
+      setPlayCount((prev) => {
+        const newCount = prev + 1;
+        if (newCount < autoPlayCount) {
+          video.play().catch(console.error);
+        }
+        return newCount;
+      });
     };
 
     video.addEventListener("ended", handleEnded);
@@ -39,28 +39,59 @@ export function StyledVideoPlayer({
     return () => {
       video.removeEventListener("ended", handleEnded);
     };
-  }, [playCount, autoPlayCount]);
+  }, [autoPlayCount]);
+
+  // Autoplay on mount when component becomes visible
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || autoPlayCount <= 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && playCount === 0 && video.paused) {
+            video.play().catch(console.error);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [autoPlayCount, playCount]);
 
   const togglePlayPause = () => {
     const video = videoRef.current;
     if (!video) return;
 
     if (video.paused) {
-      video.play();
-      setIsPlaying(true);
+      video.play().catch((error) => {
+        console.error("Video play failed:", error);
+      });
     } else {
       video.pause();
-      setIsPlaying(false);
     }
   };
 
   return (
-    <div className={`relative aspect-video rounded-lg overflow-hidden bg-gray-100 shadow-lg group ${className}`}>
+    <div className={`relative aspect-video rounded-lg overflow-hidden bg-gray-100 group ${className}`}>
+      {/* Thumbnail Overlay - shown when paused */}
+      {!isPlaying && poster && (
+        <img
+          src={poster}
+          alt="Video thumbnail"
+          className="absolute inset-0 w-full h-full object-cover z-10"
+        />
+      )}
+
       {/* Video Element */}
       <video
         ref={videoRef}
         className="w-full h-full object-cover"
-        poster={poster}
         playsInline
         muted
         onPlay={() => setIsPlaying(true)}
@@ -73,7 +104,7 @@ export function StyledVideoPlayer({
       {/* Play/Pause Button Overlay */}
       <button
         onClick={togglePlayPause}
-        className="absolute bottom-4 right-4 w-14 h-14 rounded-full bg-white/90 hover:bg-white border-2 border-gray-300 flex items-center justify-center shadow-lg transition-all hover:scale-110 cursor-pointer"
+        className="absolute bottom-4 right-4 w-14 h-14 rounded-full bg-white/90 hover:bg-white border-2 border-gray-300 flex items-center justify-center shadow-lg transition-all hover:scale-110 cursor-pointer z-20"
         aria-label={isPlaying ? "Pause video" : "Play video"}
       >
         {isPlaying ? (

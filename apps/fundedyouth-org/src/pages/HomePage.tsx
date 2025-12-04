@@ -115,7 +115,7 @@ export function HomePage() {
 
       {/* Tagline Banner Section */}
       <TaglineBanner
-        backgroundImage="/images/tagline-bg-classroom.png" >
+        backgroundImage="/images/tagline-bg-soldering.png" >
         <p className="text-2xl sm:text-3xl md:text-1xl lg:text-1xl leading-tight">
           Empowering <span className="font-extrabold">youth with the tools,</span> skills, and maker spaces they need to turn creativity into {" "}
           <span className="font-extrabold">real-world innovation.</span>
@@ -138,56 +138,88 @@ export function HomePage() {
     </section>
 
     <FeatureShowcase
-      eyebrow="3D Engineering"
-      title="3D Printing and Modeling"
-      description="Access industrial-grade tools and manufacturing equipment. Learn CNC machining, 3D printing, laser cutting, and more in our state-of-the-art makerspace."
-      buttonText="Book a Session"
-      buttonHref="#manufacturing"
+      eyebrow="Mechanical Development"
+      title="3D Printing | 3D Modeling | LaserCrafting"
+      description="Experience hands-on mechanical development as you design, print, and craft your own creations with 3D printers, modeling tools, and laser cutters—there’s always something exciting to build here."
+      buttonText="Register today"
+      buttonHref="/videos/making-a-sword.mp4"
       mediaType="video"
-      mediaSrc="/videos/manufacturing-demo.mp4"
-      videoThumbnail="https://picsum.photos/seed/manufacturing/800/600"
+      mediaSrc="/videos/making-a-sword.mp4"
+      videoThumbnail="/images/making-a-sword-video-cover.png"
+      videoAutoPlayCount={3}
     />
 
     <FeatureShowcase
-      eyebrow="Software Development"
-      title="Coding, Electronics, &amp; AI Integration"
-      description="Access industrial-grade tools and manufacturing equipment. Learn CNC machining, 3D printing, laser cutting, and more in our state-of-the-art makerspace."
-      buttonText="Book a Session"
-      buttonHref="#manufacturing"
+      eyebrow="Integrated Development"
+      title="Coding | Electronics | AI Integration"
+      description="Learn how coding, electronics, and AI work as one system through guided projects that help you design, build, and understand technology in a deeper way."
+      buttonText="Learn to code"
+      buttonHref="/videos/countdown.mp4"
       mediaType="video"
-      mediaSrc="/videos/manufacturing-demo.mp4"
-      videoThumbnail="https://picsum.photos/seed/manufacturing/800/600"
+      mediaSrc="/videos/countdown.mp4"
+      videoThumbnail="/images/countdown-video-cover.png"
+      videoAutoPlayCount={3}
       titleColor="text-green-600"
       buttonColor="bg-green-600"
     />
 
+
     <FeatureShowcase
-      eyebrow="Personal"
+      eyebrow="Community Mentorships"
       title="Professional 1-on-1 Training"
-      description="Access industrial-grade tools and manufacturing equipment. Learn CNC machining, 3D printing, laser cutting, and more in our state-of-the-art makerspace."
+      description="Learn alongside mentors who encourage your growth, expand your understanding of new technologies, and help you build a portfolio that stands out in the future."
       buttonText="Book a Session"
       buttonHref="#manufacturing"
-      mediaType="video"
-      mediaSrc="/videos/manufacturing-demo.mp4"
-      videoThumbnail="https://picsum.photos/seed/manufacturing/800/600"
-      titleColor="text-purple-600"
-      buttonColor="bg-purple-600"
+      mediaType="image"
+      mediaSrc="/images/classroom-tutoring-v1.png"
+      titleColor="text-orange-400"
+      buttonColor="bg-orange-400"
     />
 
+    {/* First Tech Challenge  */}
     <FeatureShowcase
       eyebrow="First Inspires"
       title="First Tech Challenge"
-      description="Access industrial-grade tools and manufacturing equipment. Learn CNC machining, 3D printing, laser cutting, and more in our state-of-the-art makerspace."
-      buttonText="Build with us"
-      buttonHref="#manufacturing"
-      mediaType="video"
-      mediaSrc="/videos/manufacturing-demo.mp4"
-      videoThumbnail="https://picsum.photos/seed/manufacturing/800/600"
+      description="FundedYouth is a proud supporter of the FIRST® Tech Challenge, providing hands-on support to teams like Rusteze Robotics. Our community makerspace offers a collaborative environment with 3D printing, computers, and more, giving teams the tools they need to design, build, and compete."
+      buttonText="Visit Makerspace"
+      buttonHref="#makerspace"
+      mediaType="image"
+      mediaSrc="/images/rusteze-robotics-2025-26.png"
+      backgroundColor="bg-gray-50"
       imagePosition="left"
       titleColor="text-red-600"
       buttonColor="bg-red-600"
-      backgroundColor="bg-gray-50"
-    />
+  />
+
+    {/* Tagline Banner Section */}
+      <TaglineBanner
+        backgroundImage="/images/tagline-bg-classroom.png" overlayColor="rgba(0, 150, 137, .8)" >
+        <p className="text-2xl sm:text-3xl md:text-1xl lg:text-1xl leading-tight italic">
+         Supporting <span className="font-bold">teachers</span> with tools and spaces that <span className="font-bold">"transform student creativity"</span> into real impact.
+        </p>
+      </TaglineBanner>
+
+    {/* Info Section */}
+    <section className="relative bg-white py-16 px-4">
+      <div className="container mx-auto max-w-4xl text-center">
+        {/* Heading */}
+        <h2 className="text-3xl sm:text-3xl lg:text-4xl font-bold text-teal-600 mb-6">
+          In the Classroom
+        </h2>
+
+        {/* Description */}
+        <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+          We make technology integration effortless for teachers. Our team provides on-campus instruction during school hours, so educators can learn new tools without spending their own time or money. Students receive smooth onboarding and supported certifications through FundedYouth facilities, while teachers gain real instructional support—not just curriculum.
+        </p>
+
+        {/* Button */}
+        <button className="px-8 py-3 mt-8 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-600 transition-colors shadow-md hover:shadow-lg cursor-pointer">
+          Get Started
+        </button>
+      </div>
+    </section>
+
+
     </>
   );
 }

@@ -22,7 +22,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li><a href="#" className="hover:text-primary-400 transition-colors">STEM Education</a></li>
               <li><a href="#" className="hover:text-primary-400 transition-colors">Mentorship</a></li>
-              <li><a href="#" className="hover:text-primary-400 transition-colors">Scholarships</a></li>
+              <li><a href="#" className="hover:text-primary-400 transition-colors">Fundrasing</a></li>
               <li><a href="#" className="hover:text-primary-400 transition-colors">Workshops</a></li>
             </ul>
           </div>

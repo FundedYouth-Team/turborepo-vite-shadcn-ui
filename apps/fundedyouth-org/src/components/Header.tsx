@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@repo/ui/components/button";
 
 // Define the type for menu items
@@ -10,6 +11,11 @@ interface MenuItem {
 interface HeaderProps {
   desktop: MenuItem[];
   mobile?: MenuItem[]; // Optional - falls back to desktop if not provided
+}
+
+// Helper to determine if a URL is internal (starts with /)
+function isInternalLink(url: string): boolean {
+  return url.startsWith("/") && !url.startsWith("//");
 }
 
 export function Header({ desktop, mobile }: HeaderProps) {
@@ -32,24 +38,34 @@ export function Header({ desktop, mobile }: HeaderProps) {
         <div className="container mx-auto px-6 py-4">
           <nav className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
-              <a href="/" className="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+              <Link to="/" className="flex items-center space-x-2 hover:opacity-90 transition-opacity">
                 <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-white font-bold backdrop-blur-sm">
                   FY
                 </div>
                 <span className="text-xl font-semibold text-white">Funded Youth</span>
-              </a>
+              </Link>
 
               {/* Desktop Menu - Now hidden on lg and below */}
               <div className="hidden lg:flex items-center space-x-6">
-                {desktop.map((item, index) => (
-                  <a
-                    key={index}
-                    href={item.url}
-                    className="text-white/90 hover:text-white transition-colors"
-                  >
-                    {item.text}
-                  </a>
-                ))}
+                {desktop.map((item, index) =>
+                  isInternalLink(item.url) ? (
+                    <Link
+                      key={index}
+                      to={item.url}
+                      className="text-white/90 hover:text-white transition-colors"
+                    >
+                      {item.text}
+                    </Link>
+                  ) : (
+                    <a
+                      key={index}
+                      href={item.url}
+                      className="text-white/90 hover:text-white transition-colors"
+                    >
+                      {item.text}
+                    </a>
+                  )
+                )}
               </div>
             </div>
 
@@ -110,12 +126,12 @@ export function Header({ desktop, mobile }: HeaderProps) {
           <div className="flex flex-col h-full">
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-              <a href="/" className="flex items-center space-x-2 hover:opacity-90 transition-opacity" onClick={closeMobileMenu}>
+              <Link to="/" className="flex items-center space-x-2 hover:opacity-90 transition-opacity" onClick={closeMobileMenu}>
                 <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
                   FY
                 </div>
                 <span className="text-xl font-semibold text-gray-900">Funded Youth</span>
-              </a>
+              </Link>
               <button
                 onClick={closeMobileMenu}
                 className="p-2 text-gray-700 hover:text-blue-600 transition-colors"
@@ -138,16 +154,27 @@ export function Header({ desktop, mobile }: HeaderProps) {
             {/* Mobile Menu Links */}
             <nav className="flex-1 px-6 py-6 overflow-y-auto">
               <div className="flex flex-col space-y-1">
-                {mobileMenuItems.map((item, index) => (
-                  <a
-                    key={index}
-                    href={item.url}
-                    className="px-4 py-3 text-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                    onClick={closeMobileMenu}
-                  >
-                    {item.text}
-                  </a>
-                ))}
+                {mobileMenuItems.map((item, index) =>
+                  isInternalLink(item.url) ? (
+                    <Link
+                      key={index}
+                      to={item.url}
+                      className="px-4 py-3 text-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      onClick={closeMobileMenu}
+                    >
+                      {item.text}
+                    </Link>
+                  ) : (
+                    <a
+                      key={index}
+                      href={item.url}
+                      className="px-4 py-3 text-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      onClick={closeMobileMenu}
+                    >
+                      {item.text}
+                    </a>
+                  )
+                )}
               </div>
             </nav>
 
