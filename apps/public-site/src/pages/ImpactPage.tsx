@@ -3,14 +3,6 @@ import { Link } from "react-router-dom";
 import { TaglineBanner } from "../components/TaglineBanner";
 import { BeforeAfterSlider } from "../components/BeforeAfterSlider";
 
-// Impact statistics
-const impactStats = [
-  { value: "200+", label: "Students Served", description: "Across local schools and community programs" },
-  { value: "4", label: "School Partnerships", description: "Active collaborations with local districts" },
-  { value: "50+", label: "3D Printers Donated", description: "Equipment placed in classrooms" },
-  { value: "2,000+", label: "Hours of Instruction", description: "Hands-on STEAM education delivered" },
-];
-
 // Core values
 const coreValues = [
   {
