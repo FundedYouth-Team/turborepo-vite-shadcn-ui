@@ -84,7 +84,7 @@ export function HomePage() {
 
   // Fetch latest blog post
   useEffect(() => {
-    fetch("/api/blog/index.json")
+    fetch("https://fundedyouth.org/blog/index.json")
       .then((res) => res.json())
       .then((posts: BlogPost[]) => {
         if (posts && posts.length > 0) {
