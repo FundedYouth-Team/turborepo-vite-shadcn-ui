@@ -232,6 +232,9 @@ export function ContactPage() {
               <p className="text-gray-600">Parkway Plaza Mall</p>
               <p className="text-gray-600">415 Parkway Plaza,</p>
               <p className="text-gray-600">El Cajon, CA 92020</p>
+              <p className="text-gray-500 text-sm mt-2">
+                Near the Dick's Sporting Goods mall entrance and TheGym, and across from Winsor
+              </p>
             </div>
 
             {/* Email */}
@@ -258,6 +261,64 @@ export function ContactPage() {
                 alt="Email Address"
                 className="h-6 mx-auto"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Hours of Operation Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <p className="text-orange-500 font-semibold text-sm uppercase tracking-wide mb-3">
+            VISIT US
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+            Hours of Operation
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            {/* Weekdays */}
+            <div className="bg-slate-50 rounded-xl p-6">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-6 h-6 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">Monday – Friday</h3>
+              <p className="text-blue-600 font-medium mb-1">Open Labs and Special Events</p>
+              <p className="text-gray-600 text-lg">2:30 PM – 7:30 PM</p>
+            </div>
+
+            {/* Weekends */}
+            <div className="bg-slate-50 rounded-xl p-6">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-6 h-6 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">Saturday & Sunday</h3>
+              <p className="text-green-600 font-medium mb-1">STEAM Camps and Classes</p>
+              <p className="text-gray-600 text-lg">1:00 PM – 5:00 PM</p>
             </div>
           </div>
         </div>

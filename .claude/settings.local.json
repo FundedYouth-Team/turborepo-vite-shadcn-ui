@@ -4,7 +4,8 @@
       "WebFetch(domain:www.tinkercad.com)",
       "Bash(pnpm install:*)",
       "Bash(pnpm --filter public-site build:*)",
-      "WebFetch(domain:fundedyouth.org)"
+      "WebFetch(domain:fundedyouth.org)",
+      "Bash(pnpm --filter public-site add:*)"
     ],
     "deny": [],
     "ask": []
