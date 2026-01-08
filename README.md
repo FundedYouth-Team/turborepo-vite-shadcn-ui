@@ -1,53 +1,126 @@
-# 🚀 Turborepo starter with shared shadcn/ui components (Vite, Next.js). Tailwind 4 support.
+# FundedYouth Platform
 
-[![Build](https://github.com/evgenius1424/turborepo-vite-shadcn-ui/actions/workflows/build.yml/badge.svg)](https://github.com/evgenius1424/turborepo-vite-shadcn-ui/actions/workflows/build.yml)
-[![Update Dependencies](https://github.com/evgenius1424/turborepo-vite-shadcn-ui/actions/workflows/update-dependencies.yml/badge.svg)](https://github.com/evgenius1424/turborepo-vite-shadcn-ui/actions/workflows/update-dependencies.yml)
+A monorepo for [FundedYouth.org](https://fundedyouth.org) - a nonprofit empowering youth with access to industrial manufacturing tools, STEAM educational services, and on-demand manufacturing certification programs.
 
-This repository is a monorepo starter kit utilizing [Turborepo](https://turbo.build/repo) for managing multiple
-applications with shared [shadcn/ui](https://github.com/shadcn-ui/ui) components. It includes two applications (`vite`
-and `nextjs`) in the `apps`
-directory, both of which use shared components from the `@repo/ui` package.
+## Project Overview
 
-The goal of this repository is to provide up-to-date starters for vite-react and Next.js, and probably something else.
+FundedYouth's mission is to solve for limited resources in education by providing hands-on learning experiences in 3D printing, 3D modeling, coding, electronics, and product development.
 
-### Prerequisitesvite
+## Tech Stack
 
-Make sure you have the following installed:
+- **Monorepo:** [Turborepo](https://turbo.build/repo)
+- **Frontend:** React 19 + Vite
+- **Styling:** Tailwind CSS 4 + [shadcn/ui](https://ui.shadcn.com)
+- **Deployment:** Cloudflare Pages
+- **Package Manager:** pnpm
 
-- [Node.js](https://nodejs.org/en/download/) (version 20 or higher)
-- [pnpm](https://pnpm.io/installation) (version 10 or higher)
+## Repository Structure
 
-### Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/evgenius1424/turborepo-vite-shadcn-ui.git
-   cd turborepo-vite-shadcn-ui
-   ```
-
-2. Install dependencies using `pnpm`:
-
-   ```bash
-   pnpm install
-   ```
-
-3. Build
-
-   ```bash
-   pnpm build
-   ```
-
-4. Develop
-
-```bash
-   pnpm dev
+```
+├── apps/
+│   ├── public-site/        # Main FundedYouth.org website
+│   ├── _concept/           # Design concepts and experiments
+│   └── __template_vite/    # Vite app template
+├── packages/
+│   ├── ui/                 # Shared shadcn/ui components (@repo/ui)
+│   ├── eslint-config/      # Shared ESLint configuration
+│   └── typescript-config/  # Shared TypeScript configuration
+├── functions/              # Cloudflare Pages Functions (API routes)
+│   └── api/
+│       ├── eventbrite/     # Eventbrite API proxy
+│       └── sponsor.ts      # Sponsor form handler
+└── turbo.json              # Turborepo configuration
 ```
 
-5. Add new [component](https://ui.shadcn.com/docs/components/tabs) (replace card with button, tabs, you name it)
+## Apps
+
+### public-site
+The main FundedYouth.org website featuring:
+- **Classes** - Eventbrite-integrated class listings
+- **Catalog** - Course curriculum and learning pathways
+- **Volunteer** - Volunteer registration
+- **Donate** - Donation options
+- **Sponsor** - Corporate sponsorship information
+- **Store** - Merchandise and products
+- **Impact** - Organization impact and achievements
+
+**Live:** [fundedyouth.org](https://fundedyouth.org) | **Preview:** [fundedyouth-public.pages.dev](https://fundedyouth-public.pages.dev)
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) v20+
+- [pnpm](https://pnpm.io/) v10+
+
+## Getting Started
 
 ```bash
+# Install dependencies
+pnpm install
+
+# Run all apps in development mode
+pnpm dev
+
+# Run a specific app
+pnpm --filter public-site dev
+
+# Build all apps
+pnpm build
+
+# Lint all packages
+pnpm lint
+```
+
+## Adding UI Components
+
+This repo uses [shadcn/ui](https://ui.shadcn.com) components shared across all apps via `@repo/ui`.
+
+```bash
+# Add a new component to the shared UI package
+pnpm ui <component-name>
+
+# Examples
+pnpm ui button
 pnpm ui card
+pnpm ui dialog
 ```
 
-Enjoy working with your new Turborepo starter kit and feel free to raise a PR! 🎉
+## Using Shared Components
+
+Import components from the shared package in any app:
+
+```tsx
+import { Button } from "@repo/ui/components/button";
+import { Card } from "@repo/ui/components/card";
+import { cn } from "@repo/ui/lib/utils";
+import "@repo/ui/styles/globals.css";
+```
+
+## Deployment
+
+Apps are deployed to Cloudflare Pages. See [CLOUDFLARE.md](./CLOUDFLARE.md) for detailed deployment instructions.
+
+**Key points:**
+- Build command: `pnpm --filter <app-name> build`
+- Cloudflare Pages Functions must be at repo root (`/functions/`)
+- Environment variables are configured in Cloudflare dashboard
+
+## Environment Variables
+
+### public-site
+
+| Variable | Location | Description |
+|----------|----------|-------------|
+| `VITE_EVENTBRITE_ORGANIZATION_ID` | `.env` | Eventbrite org ID (client-side) |
+| `EVENTBRITE_PRIVATE_TOKEN` | Cloudflare | Eventbrite API token (server-side) |
+| `RESEND_API_KEY` | Cloudflare | Email service API key |
+
+## Contributing
+
+1. Create a feature branch from `main`
+2. Make your changes
+3. Run `pnpm lint` and `pnpm build` to verify
+4. Submit a pull request
+
+## License
+
+Private - FundedYouth.org

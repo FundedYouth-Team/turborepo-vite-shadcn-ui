@@ -105,4 +105,54 @@ By default, Cloudflare rebuilds on every push to the connected branch. To optimi
    ```
    apps/public-site/**
    packages/**
+   functions/**
    ```
+
+---
+
+## Cloudflare Pages Functions (Monorepo)
+
+### Important: Functions Location
+
+When using Cloudflare Pages with a monorepo where **Root directory is empty**, the `functions` folder **must be at the repository root**, not inside the app directory.
+
+```
+/functions/                    ← Repository root (where Cloudflare looks)
+  └── api/
+      ├── eventbrite/
+      │   └── [[path]].ts      ← Eventbrite API proxy
+      └── sponsor.ts           ← Sponsor form handler
+```
+
+**Why?** Cloudflare Pages looks for the `functions` folder relative to the configured Root directory. Since our Root directory is empty (repo root), functions must be at `/functions/`, not `/apps/public-site/functions/`.
+
+### Current Functions
+
+| Function | Path | Purpose |
+|----------|------|---------|
+| Eventbrite Proxy | `/api/eventbrite/*` | Proxies requests to Eventbrite API with authentication |
+| Sponsor Form | `/api/sponsor` | Handles corporate sponsor form submissions |
+
+### Environment Variables
+
+Functions require environment variables configured in Cloudflare Pages:
+
+1. Go to project **Settings → Environment variables**
+2. Add the following variables for **Production** and **Preview**:
+
+| Variable | Description |
+|----------|-------------|
+| `EVENTBRITE_PRIVATE_TOKEN` | Eventbrite API private token |
+| `RESEND_API_KEY` | Resend email API key (for sponsor form) |
+| `SPONSOR_EMAIL_RECIPIENTS` | Comma-separated email recipients |
+
+### Local Development
+
+During local development with `pnpm --filter public-site dev`, the Vite dev server proxy handles API requests (configured in `vite.config.ts`). The repo root `functions` folder is only used by Cloudflare Pages in production.
+
+### Adding New Functions
+
+1. Create the function file in `/functions/api/` at the repo root
+2. For catch-all routes, use `[[path]].ts` naming convention
+3. Add any required environment variables in Cloudflare Pages dashboard
+4. Commit and push to trigger redeployment
